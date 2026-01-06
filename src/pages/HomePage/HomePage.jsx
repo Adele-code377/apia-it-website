@@ -1,8 +1,8 @@
 // src/pages/HomePage/HomePage.jsx
 import { MissionCard } from "../../components/MissionCard/MissionCard";
 import { MISSIONS } from "../../utils/constants";
-import logoApiaIT from "../../assets/images/logo-apia-it.png";
-import backgroundCyber from "../../assets/images/background-cyber.png";
+import logoApiaIT from "../../assets/images/logo/LogoApia_blanc.png";
+import backgroundCyber from "../../assets/images/Fonds/Image_de_base_apia.png";
 import "./HomePage.css";
 
 export const HomePage = () => {
