@@ -1,13 +1,30 @@
 // src/pages/HomePage/HomePage.jsx
 import { MissionCard } from "../../components/MissionCard/MissionCard";
 import { MISSIONS } from "../../utils/constants";
-import logoApiaIT from "../../assets/images/logo/LogoApia_blanc.png";
 import backgroundCyber from "../../assets/images/Fonds/Image_de_base_apia.png";
+import { useState, useEffect } from "react";
+import ordinateur from "../../assets/images/elements/Ordi_face.png";
 import "./HomePage.css";
 
 export const HomePage = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Calculer l'opacité et la position en fonction du scroll
+  const laptopOpacity = Math.min(scrollY / 300, 1);
+  const laptopTranslateY = Math.max(50 - scrollY / 10, 0);
+
   return (
     <div className="homepage">
+      {/* Image de fond plein écran */}
       <div className="homepage__background">
         <img
           className="homepage__background-image"
@@ -18,17 +35,12 @@ export const HomePage = () => {
       </div>
 
       <div className="homepage__content">
+        {/* Section principale avec logo central et texte */}
         <div className="homepage__hero">
-          <div className="homepage__logo-container">
-            <img
-              src={logoApiaIT}
-              alt="Logo APIA-IT"
-              className="homepage__logo animate-scale-in"
-            />
-          </div>
+          {/* Logo central avec effet néon */}
 
+          {/* Texte de présentation */}
           <section className="homepage__about animate-fade-in-up delay-200">
-            <h1 className="sr-only">À propos d'APIA-IT</h1>
             <p className="homepage__about-text">
               APIA-IT est une association engagée dans la sensibilisation à
               l'information, au numérique et à l'intelligence artificielle.
@@ -60,6 +72,31 @@ export const HomePage = () => {
           </section>
         </div>
 
+        {/* Section Ordinateur qui apparaît au scroll */}
+        <section
+          className="homepage__laptop-section"
+          style={{
+            opacity: laptopOpacity,
+            transform: `translateY(${laptopTranslateY}px)`,
+          }}
+        >
+          <div className="homepage__laptop-container">
+            <img
+              src={ordinateur}
+              alt="Ordinateur APIA-IT"
+              className="homepage__laptop-image"
+            />
+            <div className="homepage__laptop-overlay">
+              <h2 className="homepage__laptop-title">APIA-IT</h2>
+              <p className="homepage__laptop-subtitle">Association en</p>
+              <p className="homepage__laptop-subtitle-large">
+                Intelligence Artificielle
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Section missions en bas */}
         <section className="homepage__missions">
           <h2 className="sr-only">Nos missions</h2>
 
@@ -67,7 +104,9 @@ export const HomePage = () => {
             {MISSIONS.map((card, index) => (
               <div
                 key={card.id}
-                className={`animate-fade-in-up delay-${(index + 1) * 100}`}
+                className={`homepage__mission-item animate-fade-in-up delay-${
+                  (index + 1) * 100
+                }`}
               >
                 <MissionCard
                   title={card.title}

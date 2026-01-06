@@ -1,119 +1,126 @@
 // src/pages/ContactPage/ContactPage.jsx
-import { useState } from "react";
-import { ASSOCIATION_INFO, SOCIAL_LINKS } from "../../utils/constants";
+import React from "react";
 import "./ContactPage.css";
 
+// Import des éléments fixes
+import logoAssos from "../../assets/images/Avatar/Apia.png";
+import AdeleImage from "../../assets/images/Avatar/Adele.png";
+import CassieImage from "../../assets/images/Avatar/Cassie.png";
+import LucieImage from "../../assets/images/Avatar/Lucie.png";
+import SarahImage from "../../assets/images/Avatar/Sarah.png";
+import TristanImage from "../../assets/images/Avatar/Tristan.png";
+import ValentinaImage from "../../assets/images/Avatar/Valentina.png";
+import WijdaneImage from "../../assets/images/Avatar/Wijdane.png";
+import instaIcon from "../../assets/images/icons/Instagram_logo.png";
+import linkedinIcon from "../../assets/images/icons/LinkedIn_logo.png";
+
+const TEAM_MEMBERS = [
+  {
+    name: "Wijdane Chaigneau",
+    image: WijdaneImage,
+    role: "Presidente",
+    linkedin: "https://linkedin.com/in/...",
+  },
+  {
+    name: "Adele Privat",
+    image: AdeleImage,
+    role: "Vice-presidente",
+    linkedin: "https://linkedin.com/in/...",
+  },
+  {
+    name: "Cassie Marteau",
+    image: CassieImage,
+    role: "Responsable projet",
+    linkedin: "https://linkedin.com/in/...",
+  },
+  {
+    name: "Lucie Crest",
+    image: LucieImage,
+    role: "Secretaire",
+    linkedin: "https://linkedin.com/in/...",
+  },
+  {
+    name: "Tristan Janet",
+    image: TristanImage,
+    role: "Tresorier",
+    linkedin: "https://linkedin.com/in/...",
+  },
+  {
+    name: "Sarah Delbos",
+    image: SarahImage,
+    role: "Responsable communicatoin",
+    linkedin: "https://linkedin.com/in/...",
+  },
+  {
+    name: "Valentina Bardelang",
+    image: ValentinaImage,
+    role: "Vice responsable communication",
+    linkedin: "https://linkedin.com/in/...",
+  },
+];
+
 export const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Formulaire soumis:", formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 3000);
-  };
-
   return (
     <div className="contact-page">
-      <div className="contact-page__content">
-        <div className="contact-page__header animate-fade-in">
-          <h1 className="contact-page__title">Contactez-nous</h1>
-          <p className="contact-page__subtitle">
-            Vous avez un projet ? Une question ? N'hésitez pas !
-          </p>
-        </div>
+      {/* Éléments du fond animé */}
+      <div className="animated-bg">
+        <div className="stars"></div>
+        <div className="twinkling"></div>
+        <div className="nebula"></div>
+      </div>
 
-        <div className="contact-page__grid">
-          <div className="contact-page__form-container animate-fade-in-up delay-200">
-            {isSubmitted ? (
-              <div className="contact-page__success">
-                <div className="contact-page__success-icon">✓</div>
-                <h3>Message envoyé !</h3>
-                <p>Nous vous répondrons bientôt.</p>
-              </div>
-            ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="contact-form__group">
-                  <label htmlFor="name">Nom complet *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="contact-form__group">
-                  <label htmlFor="email">Email *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="contact-form__group">
-                  <label htmlFor="subject">Sujet *</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="contact-form__group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows="6"
-                  />
-                </div>
-                <button type="submit" className="contact-form__submit">
-                  Envoyer
-                </button>
-              </form>
-            )}
-          </div>
-
-          <div className="contact-page__info animate-fade-in-up delay-300">
-            <div className="contact-info">
-              <h2>Nos coordonnées</h2>
-              <div className="contact-info__item">
-                <div>📧</div>
-                <a href={`mailto:${ASSOCIATION_INFO.email}`}>
-                  {ASSOCIATION_INFO.email}
-                </a>
-              </div>
-              <div className="contact-info__item">
-                <div>📞</div>
-                <a href={`tel:${ASSOCIATION_INFO.phone}`}>
-                  {ASSOCIATION_INFO.phone}
-                </a>
-              </div>
+      <div className="contact-grid">
+        {TEAM_MEMBERS.map((member, index) => (
+          <div key={index} className="member-card">
+            <div className="member-avatar-container">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="member-avatar"
+                onError={(e) => {
+                  e.target.src = "../../assets/images/Avatar/Apia.png";
+                }} // Image de secours
+              />
             </div>
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="member-button"
+            >
+              {member.name}
+            </a>
+            <p className="member-role">{member.role}</p>
           </div>
+        ))}
+
+        {/* Bloc Association */}
+        <div className="member-card association-card">
+          <div className="member-avatar-container assoc-logo-container">
+            <img
+              src={logoAssos}
+              alt="APIA"
+              className="member-avatar assoc-logo"
+            />
+          </div>
+          <div className="social-footer">
+            <a
+              href="https://instagram.com/apia-it"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={instaIcon} alt="Instagram" className="social-icon" />
+            </a>
+            <div className="member-button assoc-label">Apia-it</div>
+            <a
+              href="https://linkedin.com/company/apia-it"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={linkedinIcon} alt="LinkedIn" className="social-icon" />
+            </a>
+          </div>
+          <p className="member-role">L'association</p>
         </div>
       </div>
     </div>
