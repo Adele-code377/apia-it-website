@@ -1,0 +1,31 @@
+/* src/assets/fonts/Inconsolata/inconsolata.css */
+
+/* Inconsolata Regular */
+@font-face {
+  font-family: "Inconsolata";
+  src: url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700;800&display=swap");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inconsolata Bold */
+@font-face {
+  font-family: "Inconsolata";
+  src: url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700;800&display=swap");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inconsolata ExtraBold */
+@font-face {
+  font-family: "Inconsolata";
+  src: url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700;800&display=swap");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Alternative : Import Google Fonts directement */
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700;800&display=swap");

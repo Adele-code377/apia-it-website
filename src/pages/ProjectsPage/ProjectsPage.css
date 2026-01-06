@@ -1,0 +1,36 @@
+/* src/pages/ProjectsPage/ProjectsPage.css */
+
+.projects-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 6rem 2rem 2rem;
+}
+
+.projects-page__content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projects-page__title {
+  font-size: var(--font-4xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.projects-page__subtitle {
+  font-size: var(--font-xl);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.projects-page__placeholder {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  text-align: center;
+  font-size: var(--font-lg);
+}

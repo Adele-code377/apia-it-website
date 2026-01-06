@@ -1,0 +1,136 @@
+/* src/pages/ContactPage/ContactPage.css */
+
+.contact-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 6rem 2rem 4rem;
+}
+
+.contact-page__content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-page__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-page__title {
+  font-size: var(--font-4xl);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.contact-page__subtitle {
+  font-size: var(--font-xl);
+  color: var(--text-secondary);
+}
+
+.contact-page__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+}
+
+.contact-page__form-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-form__group label {
+  font-weight: 600;
+}
+
+.contact-form__group input,
+.contact-form__group textarea {
+  padding: 0.875rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: white;
+  font-family: inherit;
+}
+
+.contact-form__group input:focus,
+.contact-form__group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.contact-form__submit {
+  padding: 1rem 2rem;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.contact-form__submit:hover {
+  transform: translateY(-2px);
+}
+
+.contact-page__success {
+  text-align: center;
+  padding: 3rem;
+}
+
+.contact-page__success-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 1rem;
+}
+
+.contact-info {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.contact-info h2 {
+  margin-bottom: 1.5rem;
+}
+
+.contact-info__item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.contact-info__item a {
+  color: var(--text-secondary);
+}
+
+.contact-info__item a:hover {
+  color: white;
+}
+
+@media (max-width: 968px) {
+  .contact-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
