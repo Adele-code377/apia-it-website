@@ -1,5 +1,8 @@
 /* src/components/Navigation/Navigation.css */
 
+/* ==========================================================================
+   1. STRUCTURE DE LA BARRE (CONTAINER)
+   ========================================================================== */
 .navigation {
   position: fixed;
   top: 0;
@@ -8,59 +11,114 @@
   z-index: var(--z-fixed);
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(15px);
-  padding: 1.5rem 2rem;
+  padding: 0.75rem 2rem;
   border-bottom: 1px solid rgba(168, 85, 247, 0.1);
 }
 
 .navigation__container {
-  max-width: 1400px;
+  max-width: auto;
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+/* Équilibre visuel pour centrer le menu si nécessaire */
+.navigation__logo-link,
+.navigation__spacer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.navigation__spacer {
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   2. LE LOGO (CADRE ET IMAGE)
+   ========================================================================== */
+.navigation__logo-frame {
+  width: 180px;
+  height: 70px;
+  overflow: hidden; /* Pour l'effet de zoom interne */
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 3rem;
+  border-radius: 8px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.navigation__logo-img {
+  height: 160%; /* Taille augmentée pour permettre le recadrage/zoom */
+  width: auto;
+  object-fit: contain;
+  transform: scale(1.2);
+  transition: transform 0.4s ease;
+}
+
+/* Interactions Logo */
+.navigation__logo-frame:hover {
+  transform: scale(1.05); /* Légère impulsion du cadre */
+}
+
+.navigation__logo-frame:hover .navigation__logo-img {
+  transform: scale(1.35); /* Zoom interne */
+}
+
+/* ==========================================================================
+   3. NAVIGATION (LIENS)
+   ========================================================================== */
+/* Modifiez ou ajoutez ceci dans Navigation.css */
+.navigation__center {
+  display: flex;
+  align-items: center;
+  gap: 20rem; /* Augmenté de 2rem à 4rem pour plus d'espace */
+}
+
+.navigation__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .navigation__item {
+  position: relative;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.2rem;
   border-radius: var(--radius-full);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: var(--text-primary);
-  position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Effet de fond au survol */
-.navigation__item::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(168, 85, 247, 0.2),
-    rgba(59, 130, 246, 0.2)
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: var(--radius-full);
+.navigation__label {
+  font-size: var(--font-lg);
+  font-weight: 400;
+  white-space: nowrap;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   4. ÉTATS (HOVER & ACTIVE)
+   ========================================================================== */
+
+/* Hover global sur l'item */
+.navigation__item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
 }
 
 .navigation__item:hover::before {
-  opacity: 1;
+  opacity: 1; /* Assure-toi que ton ::before est défini ailleurs ou ici */
 }
 
-.navigation__item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3),
-    0 0 20px rgba(168, 85, 247, 0.2);
-}
-
-/* État actif */
+/* État Actif */
 .navigation__item--active {
-  padding: 0.5rem 2rem;
   background: linear-gradient(
     135deg,
     rgba(168, 85, 247, 0.15),
@@ -69,104 +127,33 @@
   border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
-.navigation__item--active::before {
-  opacity: 0.5;
-}
-
-/* Label */
-.navigation__label {
-  font-size: var(--font-xl);
-  font-weight: 400;
-  white-space: nowrap;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.navigation__item:hover .navigation__label {
-  color: rgba(168, 85, 247, 1);
-  text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
-  transform: scale(1.05);
-}
-
 .navigation__item--active .navigation__label {
-  font-weight: 800;
+  font-weight: 700;
   color: rgba(168, 85, 247, 1);
-  text-shadow: 0 0 15px rgba(168, 85, 247, 0.7);
 }
 
-/* Ligne animée sous le texte */
-.navigation__label::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    rgba(168, 85, 247, 1),
-    rgba(59, 130, 246, 1)
-  );
-  transition: width 0.3s ease;
-  border-radius: 2px;
-}
-
-.navigation__item:hover .navigation__label::after {
-  width: 100%;
-}
-
-.navigation__item--active .navigation__label::after {
-  width: 100%;
-}
-
-/* Effet de particules au survol (optionnel) */
-@keyframes particle {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-20px) scale(0);
-    opacity: 0;
-  }
-}
-
-.navigation__item:hover::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  background: rgba(168, 85, 247, 0.8);
-  border-radius: 50%;
-  animation: particle 1s ease-out;
-  pointer-events: none;
-}
-
-/* === RESPONSIVE === */
+/* ==========================================================================
+   5. RESPONSIVE
+   ========================================================================== */
 @media (max-width: 768px) {
   .navigation {
-    padding: 1rem;
-  }
-
-  .navigation__container {
-    gap: 1rem;
-  }
-
-  .navigation__item {
     padding: 0.5rem 1rem;
   }
 
-  .navigation__item--active {
-    padding: 0.5rem 1.5rem;
+  .navigation__container {
+    gap: 0.5rem;
+  }
+
+  .navigation__logo-frame {
+    width: 120px; /* Réduit pour mobile */
+    height: 45px;
+  }
+
+  .navigation__links {
+    gap: 0.5rem;
   }
 
   .navigation__label {
-    font-size: var(--font-base);
+    font-size: 0.9rem;
   }
 }
