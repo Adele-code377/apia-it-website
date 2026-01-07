@@ -48,7 +48,7 @@ const TEAM_MEMBERS = [
   {
     name: "Sarah Delbos",
     image: SarahImage,
-    role: "Responsable communicatoin",
+    role: "Responsable communication",
     linkedin: "https://linkedin.com/in/...",
   },
   {
@@ -62,11 +62,9 @@ const TEAM_MEMBERS = [
 export const ContactPage = () => {
   return (
     <div className="contact-page">
-      {/* Éléments du fond animé */}
+      {/* Conteneur pour le fond animé (géré via CSS ::before/::after) */}
       <div className="animated-bg">
         <div className="stars"></div>
-        <div className="twinkling"></div>
-        <div className="nebula"></div>
       </div>
 
       <div className="contact-grid">
@@ -78,9 +76,9 @@ export const ContactPage = () => {
                 alt={member.name}
                 className="member-avatar"
                 onError={(e) => {
-                  e.target.src = { logoAssos };
-                  e.target.onerror = null; // Évite une boucle infinie
-                }} // Image de secours
+                  e.target.src = logoAssos;
+                  e.target.onerror = null;
+                }}
               />
             </div>
             <a

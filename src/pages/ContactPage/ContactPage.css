@@ -1,34 +1,19 @@
 /* src/pages/ContactPage/ContactPage.css */
+
 .contact-page {
   min-height: 100vh;
-  /* Fond dégradé animé */
-  background: linear-gradient(-45deg, #000000, #1a0b2e, #4a1d6e, #000000);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-
+  background-color: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4rem 2rem;
   color: white;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Important pour ne pas voir les débordements des animations */
 }
 
-/* Animation du dégradé */
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* --- SYSTÈME D'ANIMATION DE FOND --- */
 
-/* Configuration des couches d'animation en arrière-plan */
 .animated-bg {
   position: absolute;
   top: 0;
@@ -36,51 +21,82 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  pointer-events: none;
+  overflow: hidden;
 }
 
-.stars,
-.twinkling {
+/* Étoiles fixes en grain de fond */
+.stars {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
-  display: block;
-}
-
-/* Effet de scintillement */
-.stars {
-  background: #000
-    url(https://www.transparenttextures.com/patterns/stardust.png) repeat top
-    center;
-  z-index: 1;
-  opacity: 0.5;
-}
-
-.twinkling {
   background: transparent
-    url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat
-    top center;
-  z-index: 2;
-  animation: move-twink-back 200s linear infinite;
+    url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  opacity: 0.5;
+  z-index: 1;
 }
 
-@keyframes move-twink-back {
+/* Nébuleuse 1 : Grande tache violette qui tourne et pulse */
+.animated-bg::before {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle at center,
+    rgba(74, 29, 110, 0.4) 0%,
+    transparent 50%
+  );
+  animation: nebulaMaster 20s infinite alternate;
+  z-index: 0;
+}
+
+/* Nébuleuse 2 : Tache plus claire avec mouvement opposé */
+.animated-bg::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle at center,
+    rgba(168, 85, 247, 0.2) 0%,
+    transparent 40%
+  );
+  animation: nebulaSecondary 15s infinite linear;
+  z-index: 0;
+}
+
+@keyframes nebulaMaster {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-5%, 10%) scale(1.2) rotate(5deg);
+  }
+  100% {
+    transform: translate(10%, -5%) scale(1) rotate(-5deg);
+  }
+}
+
+@keyframes nebulaSecondary {
   from {
-    background-position: 0 0;
+    transform: rotate(0deg) translate(10%, 10%);
   }
   to {
-    background-position: -10000px 5000px;
+    transform: rotate(360deg) translate(10%, 10%);
   }
 }
 
-/* On s'assure que la grille est au-dessus du fond */
+/* --- GRILLE ET CARTES --- */
+
 .contact-grid {
   position: relative;
-  z-index: 10;
+  z-index: 10; /* Pour passer au-dessus du fond animé */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3rem 2rem;
@@ -100,9 +116,10 @@
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  background: #ccc; /* Fond de secours */
+  background: #222;
   margin-bottom: 1rem;
   border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .member-avatar {
@@ -111,13 +128,12 @@
   object-fit: cover;
 }
 
-/* Style des boutons sous les avatars */
 .member-button {
   background: black;
   color: white;
   border: 1px solid white;
   padding: 0.4rem 1rem;
-  font-family: "Courier New", Courier, monospace; /* Style machine à écrire de l'image */
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.9rem;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -126,7 +142,6 @@
   display: inline-block;
 }
 
-/* Effet violet au survol demandé */
 .member-button:hover {
   background: #a855f7;
   border-color: #a855f7;
@@ -140,14 +155,13 @@
   font-weight: 300;
 }
 
-/* Styles spécifiques à l'association */
 .assoc-logo-container {
   background: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #ff00ff; /* Liseré néon comme sur l'image */
-  box-shadow: 0 0 10px #ff00ff;
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 15px #ff00ff;
 }
 
 .social-footer {
@@ -168,10 +182,10 @@
 }
 
 .assoc-label {
-  margin-bottom: 0; /* Aligné avec les icônes */
+  margin-bottom: 0;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);
