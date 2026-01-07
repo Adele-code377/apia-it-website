@@ -9,10 +9,10 @@
   padding: 4rem 2rem;
   color: white;
   position: relative;
-  overflow: hidden; /* Important pour ne pas voir les débordements des animations */
+  overflow: hidden;
 }
 
-/* --- SYSTÈME D'ANIMATION DE FOND --- */
+/* --- SYSTÈME D'ÉTOILES MULTIDIRECTIONNEL --- */
 
 .animated-bg {
   position: absolute;
@@ -21,82 +21,68 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  overflow: hidden;
 }
 
-/* Étoiles fixes en grain de fond */
+/* Couche 1 : Petites étoiles (fond lointain) - Mouvement lent */
 .stars {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: transparent
     url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
-  opacity: 0.5;
+  opacity: 0.4;
   z-index: 1;
+  animation: starsSlowMove 150s linear infinite;
 }
 
-/* Nébuleuse 1 : Grande tache violette qui tourne et pulse */
-.animated-bg::before {
-  content: "";
-  position: absolute;
-  top: -25%;
-  left: -25%;
-  width: 150%;
-  height: 150%;
-  background: radial-gradient(
-    circle at center,
-    rgba(74, 29, 110, 0.4) 0%,
-    transparent 50%
-  );
-  animation: nebulaMaster 20s infinite alternate;
-  z-index: 0;
-}
-
-/* Nébuleuse 2 : Tache plus claire avec mouvement opposé */
+/* Couche 2 : Étoiles moyennes - Oscillation et décalage */
 .animated-bg::after {
   content: "";
   position: absolute;
-  top: -10%;
-  right: -10%;
-  width: 120%;
-  height: 120%;
-  background: radial-gradient(
-    circle at center,
-    rgba(168, 85, 247, 0.2) 0%,
-    transparent 40%
-  );
-  animation: nebulaSecondary 15s infinite linear;
-  z-index: 0;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: transparent
+    url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  opacity: 0.3;
+  z-index: 2;
+  animation: starsFloat 40s ease-in-out infinite alternate;
+  filter: brightness(1.5);
 }
 
-@keyframes nebulaMaster {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-  50% {
-    transform: translate(-5%, 10%) scale(1.2) rotate(5deg);
-  }
-  100% {
-    transform: translate(10%, -5%) scale(1) rotate(-5deg);
-  }
-}
+/* --- KEYFRAMES --- */
 
-@keyframes nebulaSecondary {
+/* Mouvement de fond qui tourne très légèrement en dérivant */
+@keyframes starsSlowMove {
   from {
-    transform: rotate(0deg) translate(10%, 10%);
+    transform: translate(0, 0) rotate(0deg);
   }
   to {
-    transform: rotate(360deg) translate(10%, 10%);
+    transform: translate(-10%, -10%) rotate(5deg);
   }
 }
 
-/* --- GRILLE ET CARTES --- */
+/* Mouvement de flottement (va-et-vient organique) */
+@keyframes starsFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, -4%) scale(1.05);
+  }
+  100% {
+    transform: translate(-2%, 2%) scale(1);
+  }
+}
+
+/* --- GRILLE ET CARTES (Inchangé) --- */
 
 .contact-grid {
   position: relative;
-  z-index: 10; /* Pour passer au-dessus du fond animé */
+  z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3rem 2rem;
@@ -185,7 +171,6 @@
   margin-bottom: 0;
 }
 
-/* RESPONSIVE */
 @media (max-width: 1024px) {
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);

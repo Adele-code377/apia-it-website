@@ -2,7 +2,6 @@
 import React from "react";
 import "./ContactPage.css";
 
-// Import des éléments fixes
 import logoAssos from "../../assets/images/Avatar/Apia.png";
 import AdeleImage from "../../assets/images/Avatar/Adele.png";
 import CassieImage from "../../assets/images/Avatar/Cassie.png";
@@ -62,7 +61,7 @@ const TEAM_MEMBERS = [
 export const ContactPage = () => {
   return (
     <div className="contact-page">
-      {/* Conteneur pour le fond animé (géré via CSS ::before/::after) */}
+      {/* Fond avec plusieurs couches d'étoiles animées */}
       <div className="animated-bg">
         <div className="stars"></div>
       </div>
@@ -93,7 +92,6 @@ export const ContactPage = () => {
           </div>
         ))}
 
-        {/* Bloc Association */}
         <div className="member-card association-card">
           <div className="member-avatar-container assoc-logo-container">
             <img
