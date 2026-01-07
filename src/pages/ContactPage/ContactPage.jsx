@@ -18,19 +18,19 @@ const TEAM_MEMBERS = [
     name: "Wijdane Chaigneau",
     image: WijdaneImage,
     role: "Presidente",
-    linkedin: "https://linkedin.com/in/...",
+    linkedin: "https://linkedin.com/in/wijdane-chaigneau-a3753b29b/",
   },
   {
     name: "Adele Privat",
     image: AdeleImage,
     role: "Vice-presidente",
-    linkedin: "https://linkedin.com/in/...",
+    linkedin: "https://linkedin.com/in/adele-privat/",
   },
   {
     name: "Cassie Marteau",
     image: CassieImage,
     role: "Responsable projet",
-    linkedin: "https://linkedin.com/in/...",
+    linkedin: "https://linkedin.com/in/cassie-marteau-734335305/",
   },
   {
     name: "Lucie Crest",
@@ -42,19 +42,19 @@ const TEAM_MEMBERS = [
     name: "Tristan Janet",
     image: TristanImage,
     role: "Tresorier",
-    linkedin: "https://linkedin.com/in/...",
+    linkedin: "https://linkedin.com/in/tristan-janet-0453bb396/",
   },
   {
     name: "Sarah Delbos",
     image: SarahImage,
     role: "Responsable communication",
-    linkedin: "https://linkedin.com/in/...",
+    linkedin: "https://linkedin.com/in/sarah-delbos-b04829399/",
   },
   {
     name: "Valentina Bardelang",
     image: ValentinaImage,
     role: "Vice responsable communication",
-    linkedin: "https://linkedin.com/in/...",
+    linkedin: "https://linkedin.com/in/valentina-bardelang-3b004a399/",
   },
 ];
 

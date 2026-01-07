@@ -51,6 +51,8 @@
   color: var(--text-secondary);
   font-size: var(--font-sm);
   transition: color var(--transition-base);
+  display: block;
+  width: fit-content;
 }
 
 .footer__link:hover {
@@ -99,5 +101,8 @@
   .footer__container {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+  .footer__link {
+    margin: 0 auto; /* Pour garder le lien cliquable centré */
   }
 }

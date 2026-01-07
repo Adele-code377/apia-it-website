@@ -27,7 +27,7 @@ export const Footer = () => {
             </li>
             <li>
               <Link to="/projets" className="footer__link">
-                Projets
+                Projets Réaliser
               </Link>
             </li>
             <li>
@@ -50,34 +50,37 @@ export const Footer = () => {
               </a>
             </li>
             <li>
-              <a
-                href={`tel:${ASSOCIATION_INFO.phone}`}
-                className="footer__link"
-              >
-                {ASSOCIATION_INFO.phone}
-              </a>
+              <p className="footer__description">
+                {ASSOCIATION_INFO.address.street}
+              </p>
+            </li>
+            <li>
+              <p className="footer__description">
+                {ASSOCIATION_INFO.address.city}{" "}
+                {ASSOCIATION_INFO.address.zipCode}
+              </p>
             </li>
           </ul>
         </div>
 
         <div className="footer__section">
-          <h4 className="footer__subtitle">Suivez-nous</h4>
+          <h4 className="footer__subtitle">Si vous voulez nous rejoindre</h4>
           <div className="footer__socials">
             <a
-              href={SOCIAL_LINKS.linkedin}
+              href={SOCIAL_LINKS.discord}
               target="_blank"
               rel="noopener noreferrer"
               className="footer__social-link"
             >
-              LinkedIn
+              Discord
             </a>
             <a
-              href={SOCIAL_LINKS.twitter}
+              href={SOCIAL_LINKS.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="footer__social-link"
             >
-              Twitter
+              Whatsapp
             </a>
           </div>
         </div>
@@ -85,7 +88,7 @@ export const Footer = () => {
 
       <div className="footer__bottom">
         <p className="footer__copyright">
-          © {currentYear} {ASSOCIATION_INFO.name}. Tous droits réservés.
+          © {currentYear} {ASSOCIATION_INFO.name}
         </p>
       </div>
     </footer>

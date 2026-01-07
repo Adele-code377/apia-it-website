@@ -4,12 +4,11 @@
 export const ASSOCIATION_INFO = {
   name: "APIA-IT",
   fullName: "Association pour l'Information et l'Intelligence Artificielle",
-  email: "contact@apia-it.fr",
-  phone: "+33 1 23 45 67 89",
+  email: "apia.it.fr@gmail.com",
   address: {
-    street: "123 Rue de l'Innovation",
-    city: "Paris",
-    zipCode: "75001",
+    street: "8 Rue Pierre de Coubertin",
+    city: "Pontoise",
+    zipCode: "95300",
     country: "France",
   },
 };
@@ -45,6 +44,6 @@ export const MISSIONS = [
 // Réseaux sociaux
 export const SOCIAL_LINKS = {
   linkedin: "https://linkedin.com/company/apia-it",
-  twitter: "https://twitter.com/apia_it",
-  facebook: "https://facebook.com/apia.it",
+  whatsapp: "https://chat.whatsapp.com/H2IK334mkJT3m3o85Vyi0q",
+  discord: "https://discord.gg/aPjEeJrC2",
 };
