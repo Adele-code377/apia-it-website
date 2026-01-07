@@ -1,16 +1,86 @@
 /* src/pages/ContactPage/ContactPage.css */
-
 .contact-page {
   min-height: 100vh;
-  background: radial-gradient(circle at bottom right, #4a1d6e 0%, #000000 70%);
+  /* Fond dégradé animé */
+  background: linear-gradient(-45deg, #000000, #1a0b2e, #4a1d6e, #000000);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4rem 2rem;
   color: white;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Animation du dégradé */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Configuration des couches d'animation en arrière-plan */
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stars,
+.twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Effet de scintillement */
+.stars {
+  background: #000
+    url(https://www.transparenttextures.com/patterns/stardust.png) repeat top
+    center;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.twinkling {
+  background: transparent
+    url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat
+    top center;
+  z-index: 2;
+  animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+/* On s'assure que la grille est au-dessus du fond */
 .contact-grid {
+  position: relative;
+  z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3rem 2rem;

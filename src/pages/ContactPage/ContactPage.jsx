@@ -78,7 +78,8 @@ export const ContactPage = () => {
                 alt={member.name}
                 className="member-avatar"
                 onError={(e) => {
-                  e.target.src = "../../assets/images/Avatar/Apia.png";
+                  e.target.src = { logoAssos };
+                  e.target.onerror = null; // Évite une boucle infinie
                 }} // Image de secours
               />
             </div>
