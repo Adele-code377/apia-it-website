@@ -12,8 +12,7 @@
   overflow: hidden;
 }
 
-/* --- SYSTÈME D'ÉTOILES MULTIDIRECTIONNEL --- */
-
+/* --- SYSTÈME D'ÉTOILES --- */
 .animated-bg {
   position: absolute;
   top: 0;
@@ -23,7 +22,6 @@
   z-index: 0;
 }
 
-/* Couche 1 : Petites étoiles (fond lointain) - Mouvement lent */
 .stars {
   position: absolute;
   top: -50%;
@@ -37,7 +35,6 @@
   animation: starsSlowMove 150s linear infinite;
 }
 
-/* Couche 2 : Étoiles moyennes - Oscillation et décalage */
 .animated-bg::after {
   content: "";
   position: absolute;
@@ -53,9 +50,6 @@
   filter: brightness(1.5);
 }
 
-/* --- KEYFRAMES --- */
-
-/* Mouvement de fond qui tourne très légèrement en dérivant */
 @keyframes starsSlowMove {
   from {
     transform: translate(0, 0) rotate(0deg);
@@ -65,7 +59,6 @@
   }
 }
 
-/* Mouvement de flottement (va-et-vient organique) */
 @keyframes starsFloat {
   0% {
     transform: translate(0, 0) scale(1);
@@ -78,7 +71,7 @@
   }
 }
 
-/* --- GRILLE ET CARTES (Inchangé) --- */
+/* --- GRILLE ET CARTES --- */
 
 .contact-grid {
   position: relative;
@@ -97,21 +90,30 @@
   text-align: center;
 }
 
+/* LE CERCLE : On force la taille et on cache tout débordement */
 .member-avatar-container {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  overflow: hidden;
-  background: #222;
+  overflow: hidden; /* Coupe tout ce qui dépasse */
   margin-bottom: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 15px #ff00ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000; /* Fond noir au cas où l'image est transparente */
 }
 
+/* L'IMAGE : On force le remplissage total */
 .member-avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100.5%; /* Un tout petit peu plus que 100% pour éviter les liserés vides */
+  height: 100.5%;
+  object-fit: cover; /* Remplit sans déformer */
+  object-position: center;
+  display: block;
+  /* Si tes images ont des bords noirs intégrés, ce zoom va les cacher : */
+  transform: scale(1.02);
 }
 
 .member-button {
@@ -141,15 +143,6 @@
   font-weight: 300;
 }
 
-.assoc-logo-container {
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ff00ff;
-  box-shadow: 0 0 15px #ff00ff;
-}
-
 .social-footer {
   display: flex;
   align-items: center;
@@ -167,10 +160,7 @@
   transform: scale(1.2);
 }
 
-.assoc-label {
-  margin-bottom: 0;
-}
-
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);

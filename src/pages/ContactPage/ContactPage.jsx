@@ -61,7 +61,6 @@ const TEAM_MEMBERS = [
 export const ContactPage = () => {
   return (
     <div className="contact-page">
-      {/* Fond avec plusieurs couches d'étoiles animées */}
       <div className="animated-bg">
         <div className="stars"></div>
       </div>
@@ -92,13 +91,9 @@ export const ContactPage = () => {
           </div>
         ))}
 
-        <div className="member-card association-card">
-          <div className="member-avatar-container assoc-logo-container">
-            <img
-              src={logoAssos}
-              alt="APIA"
-              className="member-avatar assoc-logo"
-            />
+        <div className="member-card">
+          <div className="member-avatar-container">
+            <img src={logoAssos} alt="APIA" className="member-avatar" />
           </div>
           <div className="social-footer">
             <a
